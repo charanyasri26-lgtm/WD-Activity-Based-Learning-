@@ -2,724 +2,282 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>TravelGo | Bus & Train Booking</title>
-
-<style>
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-    font-family: Arial, sans-serif;
-}
-
-body {
-    background: #f2f6fc;
-    color: #24344d;
-    line-height: 1.6;
-}
-
-header {
-    background: #123c69;
-    color: white;
-    padding: 20px 7%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 10px;
-}
-
-header h1 {
-    color: #ffd166;
-}
-
-nav a {
-    color: white;
-    text-decoration: none;
-    margin-left: 18px;
-}
-
-.hero {
-    background: linear-gradient(120deg, #123c69, #087e8b);
-    color: white;
-    text-align: center;
-    padding: 45px 15px 70px;
-}
-
-.hero h2 {
-    font-size: 32px;
-    margin-bottom: 8px;
-}
-
-.booking-box {
-    background: white;
-    color: #24344d;
-    max-width: 1100px;
-    margin: -40px auto 25px;
-    padding: 25px;
-    border-radius: 12px;
-    box-shadow: 0 5px 20px #00000015;
-    position: relative;
-}
-
-.tabs {
-    display: flex;
-    gap: 10px;
-    margin-bottom: 20px;
-}
-
-.tabs button {
-    flex: 1;
-    background: #e9f1fb;
-    color: #123c69;
-}
-
-.tabs button.active {
-    background: #087e8b;
-    color: white;
-}
-
-.search-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-    gap: 16px;
-    align-items: end;
-}
-
-label {
-    display: block;
-    font-weight: bold;
-    margin-bottom: 6px;
-}
-
-input, select {
-    width: 100%;
-    padding: 12px;
-    border: 1px solid #cbd5e1;
-    border-radius: 6px;
-    background: white;
-    font-size: 15px;
-}
-
-button {
-    border: none;
-    padding: 12px 18px;
-    background: #087e8b;
-    color: white;
-    border-radius: 6px;
-    cursor: pointer;
-    font-size: 15px;
-}
-
-button:hover {
-    opacity: 0.88;
-}
-
-section.content {
-    max-width: 1100px;
-    margin: 35px auto;
-    padding: 0 18px;
-}
-
-h2.section-title {
-    color: #123c69;
-    margin-bottom: 18px;
-}
-
-.results {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
-    gap: 20px;
-}
-
-.travel-card {
-    background: white;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 3px 12px #0000000c;
-    border-top: 4px solid #087e8b;
-}
-
-.travel-card h3 {
-    color: #123c69;
-    margin-bottom: 8px;
-}
-
-.travel-card p {
-    margin: 5px 0;
-}
-
-.price {
-    font-size: 23px;
-    color: #087e8b;
-    font-weight: bold;
-    margin: 12px 0;
-}
-
-.badge {
-    display: inline-block;
-    background: #e0f5ed;
-    color: #13764c;
-    padding: 3px 9px;
-    border-radius: 20px;
-    font-size: 12px;
-    margin-bottom: 8px;
-}
-
-.seat-section {
-    background: white;
-    padding: 25px;
-    border-radius: 10px;
-    box-shadow: 0 3px 12px #0000000c;
-}
-
-.seat-legend {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 15px;
-    margin: 15px 0;
-}
-
-.legend-item {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-}
-
-.legend-box {
-    width: 18px;
-    height: 18px;
-    border-radius: 4px;
-    display: inline-block;
-}
-
-.available-color { background: #d8f3dc; }
-.selected-color { background: #087e8b; }
-.booked-color { background: #cbd5e1; }
-
-.seat-map {
-    display: grid;
-    grid-template-columns: repeat(4, 48px);
-    gap: 12px;
-    justify-content: center;
-    margin: 25px auto;
-}
-
-.seat {
-    height: 42px;
-    background: #d8f3dc;
-    color: #166534;
-    border: 1px solid #86c99b;
-    border-radius: 6px;
-    padding: 5px;
-}
-
-.seat.selected {
-    background: #087e8b;
-    color: white;
-}
-
-.seat.booked {
-    background: #cbd5e1;
-    color: #64748b;
-    border-color: #cbd5e1;
-    cursor: not-allowed;
-}
-
-.aisle {
-    width: 20px;
-}
-
-.summary {
-    background: #e9f7f7;
-    padding: 18px;
-    border-radius: 8px;
-    margin-top: 20px;
-}
-
-.table-wrap {
-    overflow-x: auto;
-    background: white;
-    border-radius: 8px;
-}
-
-table {
-    width: 100%;
-    border-collapse: collapse;
-    min-width: 500px;
-}
-
-th, td {
-    padding: 13px;
-    text-align: left;
-    border-bottom: 1px solid #e2e8f0;
-}
-
-th {
-    background: #123c69;
-    color: white;
-}
-
-.form-box {
-    background: white;
-    padding: 25px;
-    border-radius: 10px;
-    max-width: 650px;
-    box-shadow: 0 3px 12px #0000000c;
-}
-
-.form-box label {
-    margin-top: 12px;
-}
-
-#message {
-    margin-top: 15px;
-    color: #13764c;
-    font-weight: bold;
-}
-
-footer {
-    background: #123c69;
-    color: white;
-    padding: 25px;
-    text-align: center;
-    margin-top: 45px;
-}
-
-@media (max-width: 600px) {
-    header {
-        flex-direction: column;
-        text-align: center;
-    }
-
-    nav a {
-        display: inline-block;
-        margin: 5px;
-    }
-
-    .hero h2 {
-        font-size: 25px;
-    }
-
-    .booking-box {
-        margin: -30px 12px 20px;
-        padding: 17px;
-    }
-
-    .seat-map {
-        grid-template-columns: repeat(4, 42px);
-        gap: 8px;
-    }
-}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Travel Buddy - Bus & Train Booking</title>
+    <link rel="stylesheet" href="style3.css">
 </head>
-
 <body>
 
 <header>
-    <h1>🚆 TravelGo</h1>
-    <nav aria-label="Main navigation">
+    <div class="logo">💜 Travel Buddy</div>
+    <nav>
         <a href="#home">Home</a>
-        <a href="#services">Services</a>
-        <a href="#seats">Seats</a>
-        <a href="#passenger">Passenger Details</a>
+        <a href="#bus">Bus</a>
+        <a href="#train">Train</a>
+        <a href="#contact">Contact</a>
     </nav>
 </header>
 
-<main>
-<div class="hero" id="home">
-    <h2>Your Journey Starts Here!</h2>
-    <p>Book bus and train tickets easily in one place.</p>
-</div>
+<!-- HOME -->
+<section id="home" class="page">
+    <div class="hero">
+        <h1>Your Journey Starts Here!</h1>
+        <p>Book your bus and train tickets with ease.</p>
+        <div class="travel-image">🚌 🚆 🌈</div>
 
-<div class="booking-box">
-    <div class="tabs" role="group" aria-label="Travel type">
-        <button type="button" id="busTab" class="active"
-            onclick="setType('Bus')">🚌 Bus</button>
-        <button type="button" id="trainTab"
-            onclick="setType('Train')">🚆 Train</button>
+        <div class="buttons">
+            <a href="#bus" class="btn">Search Buses</a>
+            <a href="#train" class="btn pink">Search Trains</a>
+        </div>
+
+        <div class="features">
+            <div class="feature">
+                <h3>🚌 Bus Travel</h3>
+                <p>Explore bus services and fares.</p>
+            </div>
+            <div class="feature">
+                <h3>🚆 Train Travel</h3>
+                <p>View trains and timings.</p>
+            </div>
+            <div class="feature">
+                <h3>💖 Easy Booking</h3>
+                <p>Simple and convenient forms.</p>
+            </div>
+        </div>
     </div>
+</section>
 
-    <form id="searchForm">
-        <div class="search-grid">
-            <div>
-                <label for="source">From</label>
-                <input id="source" list="cities"
-                    placeholder="Source city" required>
+<!-- BUS SEARCH -->
+<section id="bus" class="page">
+    <h2>🚌 Search Bus Tickets</h2>
+    <p class="subtitle">Enter your journey details to view buses.</p>
+
+    <form class="form-card bus-form" action="#bus-results" method="get">
+        <div class="form-row">
+            <div class="field">
+                <label for="busfrom">From</label>
+                <input id="busfrom" name="busfrom" type="text"
+                       placeholder="Starting city" required>
             </div>
-
-            <div>
-                <label for="destination">To</label>
-                <input id="destination" list="cities"
-                    placeholder="Destination city" required>
+            <div class="field">
+                <label for="busto">To</label>
+                <input id="busto" name="busto" type="text"
+                       placeholder="Destination city" required>
             </div>
+        </div>
 
-            <datalist id="cities">
-                <option value="Vijayawada">
-                <option value="Hyderabad">
-                <option value="Chennai">
-                <option value="Bengaluru">
-                <option value="Visakhapatnam">
-                <option value="Tirupati">
-            </datalist>
-
-            <div>
-                <label for="travelDate">Travel Date</label>
-                <input type="date" id="travelDate" required>
+        <div class="form-row">
+            <div class="field">
+                <label for="busdate">Journey Date</label>
+                <input id="busdate" name="busdate" type="date" required>
             </div>
-
-            <div>
-                <label for="passengers">Passengers</label>
-                <select id="passengers">
-                    <option value="1">1 Passenger</option>
-                    <option value="2">2 Passengers</option>
-                    <option value="3">3 Passengers</option>
-                    <option value="4">4 Passengers</option>
-                    <option value="5">5 Passengers</option>
-                    <option value="6">6 Passengers</option>
+            <div class="field">
+                <label for="bustype">Bus Type</label>
+                <select id="bustype" name="bustype">
+                    <option>All Buses</option>
+                    <option>AC Seater</option>
+                    <option>Sleeper</option>
+                    <option>Luxury Bus</option>
                 </select>
             </div>
-
-            <button type="submit">Search Services</button>
         </div>
+
+        <button type="submit" class="submit-button">🔍 Search Buses</button>
     </form>
-</div>
 
-<section class="content" id="services">
-    <h2 class="section-title">Available Services</h2>
-    <p id="routeInfo">Select your route and search for a service.</p>
+    <div id="bus-results" class="results">
+        <h3>Available Buses — Sample Results</h3>
 
-    <div class="results" id="results">
-        <article class="travel-card">
-            <span class="badge">Popular</span>
-            <h3>Express AC Bus</h3>
-            <p>Departure: 08:00 AM</p>
-            <p>Arrival: 02:00 PM</p>
-            <p>Duration: 6 hours</p>
-            <p>Fare per passenger: ₹650</p>
-            <button type="button"
-                onclick="chooseService('Express AC Bus', 650)">
-                Select Bus
-            </button>
-        </article>
+        <div class="ticket-list">
+            <div class="ticket">
+                <h4>Express Comfort</h4>
+                <p>Departure: 9:00 AM</p>
+                <p>Arrival: 2:00 PM</p>
+                <p>AC Seater</p>
+                <div class="price">₹650</div>
+                <a href="#bus-booking" class="small-btn">Book This Bus</a>
+            </div>
 
-        <article class="travel-card">
-            <span class="badge">Comfort</span>
-            <h3>Superfast Train</h3>
-            <p>Departure: 09:30 AM</p>
-            <p>Arrival: 03:30 PM</p>
-            <p>Duration: 6 hours</p>
-            <p>Fare per passenger: ₹450</p>
-            <button type="button"
-                onclick="chooseService('Superfast Train', 450)">
-                Select Train
-            </button>
-        </article>
-    </div>
-</section>
+            <div class="ticket">
+                <h4>Premium Sleeper</h4>
+                <p>Departure: 10:00 PM</p>
+                <p>Arrival: 5:00 AM</p>
+                <p>AC Sleeper</p>
+                <div class="price">₹950</div>
+                <a href="#bus-booking" class="small-btn">Book This Bus</a>
+            </div>
 
-<section class="content" id="seats">
-    <h2 class="section-title">Select Your Seats</h2>
-
-    <div class="seat-section">
-        <p>Choose your seats below. Grey seats are unavailable.</p>
-
-        <div class="seat-legend">
-            <span class="legend-item">
-                <span class="legend-box available-color"></span> Available
-            </span>
-            <span class="legend-item">
-                <span class="legend-box selected-color"></span> Selected
-            </span>
-            <span class="legend-item">
-                <span class="legend-box booked-color"></span> Unavailable
-            </span>
-        </div>
-
-        <div class="seat-map" id="seatMap">
-            <button type="button" class="seat" data-seat="A1">A1</button>
-            <button type="button" class="seat" data-seat="A2">A2</button>
-            <span class="aisle"></span>
-            <button type="button" class="seat booked" disabled>A3</button>
-
-            <button type="button" class="seat" data-seat="B1">B1</button>
-            <button type="button" class="seat booked" disabled>B2</button>
-            <span class="aisle"></span>
-            <button type="button" class="seat" data-seat="B3">B3</button>
-
-            <button type="button" class="seat" data-seat="C1">C1</button>
-            <button type="button" class="seat" data-seat="C2">C2</button>
-            <span class="aisle"></span>
-            <button type="button" class="seat" data-seat="C3">C3</button>
-
-            <button type="button" class="seat" data-seat="D1">D1</button>
-            <button type="button" class="seat" data-seat="D2">D2</button>
-            <span class="aisle"></span>
-            <button type="button" class="seat" data-seat="D3">D3</button>
-        </div>
-
-        <p id="seatInfo" aria-live="polite">Selected seats: None</p>
-
-        <div class="summary">
-            <p>Selected Service: <strong id="selectedService">None</strong></p>
-            <p>Number of Seats: <strong id="seatCount">0</strong></p>
-            <p>Total Fare: <strong id="totalFare">₹0</strong></p>
+            <div class="ticket">
+                <h4>Royal Travels</h4>
+                <p>Departure: 4:00 PM</p>
+                <p>Arrival: 9:00 PM</p>
+                <p>Luxury Bus</p>
+                <div class="price">₹800</div>
+                <a href="#bus-booking" class="small-btn">Book This Bus</a>
+            </div>
         </div>
     </div>
-</section>
 
-<section class="content">
-    <h2 class="section-title">Fare Information</h2>
-    <div class="table-wrap">
-        <table>
-            <thead>
-                <tr>
-                    <th>Service</th>
-                    <th>Departure</th>
-                    <th>Arrival</th>
-                    <th>Fare per Person</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>Express AC Bus</td>
-                    <td>08:00 AM</td>
-                    <td>02:00 PM</td>
-                    <td>₹650</td>
-                </tr>
-                <tr>
-                    <td>Superfast Train</td>
-                    <td>09:30 AM</td>
-                    <td>03:30 PM</td>
-                    <td>₹450</td>
-                </tr>
-                <tr>
-                    <td>Deluxe Bus</td>
-                    <td>10:00 PM</td>
-                    <td>05:00 AM</td>
-                    <td>₹800</td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-    <p style="margin-top:10px;">
-        Note: All routes, timings and fares are sample project data.
-    </p>
-</section>
-
-<section class="content" id="passenger">
-    <h2 class="section-title">Passenger Details</h2>
-
-    <form class="form-box" id="passengerForm">
-        <label for="fullName">Full Name</label>
-        <input type="text" id="fullName"
-            autocomplete="name" required>
-
-        <label for="email">Email Address</label>
-        <input type="email" id="email"
-            autocomplete="email" required>
-
-        <label for="phone">Phone Number</label>
-        <input type="tel" id="phone"
-            autocomplete="tel" pattern="[0-9]{10}"
-            maxlength="10" placeholder="10-digit mobile number"
-            required>
-
-        <label for="age">Passenger Age</label>
-        <input type="number" id="age" min="1" max="120" required>
-
-        <label for="gender">Gender</label>
-        <select id="gender" required>
-            <option value="">Select</option>
-            <option>Female</option>
-            <option>Male</option>
-            <option>Other</option>
-            <option>Prefer not to say</option>
-        </select>
-
-        <button type="submit">Confirm Demo Booking</button>
-        <p id="message" role="status" aria-live="polite"></p>
+    <form id="bus-booking" class="form-card booking-form"
+          action="#bus-success" method="get">
+        <h3>Bus Passenger Details</h3>
+        <div class="form-row">
+            <div class="field">
+                <label for="busname">Passenger Name</label>
+                <input id="busname" name="busname" type="text"
+                       placeholder="Your name" required>
+            </div>
+            <div class="field">
+                <label for="busphone">Phone Number</label>
+                <input id="busphone" name="busphone" type="tel"
+                       placeholder="Your phone number" required>
+            </div>
+        </div>
+        <button type="submit" class="submit-button">Submit Bus Form</button>
     </form>
+
+    <div id="bus-success" class="success">
+        <h3>✅ Bus Form Submitted Successfully!</h3>
+        <p>Thank you! Your sample bus booking form has been submitted.</p>
+        <p>No actual ticket has been booked.</p>
+        <a href="#bus" class="small-btn">Back to Bus Search</a>
+    </div>
 </section>
-</main>
 
-<footer>
-    <h3>TravelGo</h3>
-    <p>Making every journey comfortable and simple.</p>
-    <p>Student Project | Bus and Train Booking Interface</p>
-</footer>
+<!-- TRAIN SEARCH -->
+<section id="train" class="page">
+    <h2>🚆 Search Train Tickets</h2>
+    <p class="subtitle">Enter your journey details to view trains.</p>
 
-<script>
-let travelType = "Bus";
-let selectedService = "";
-let fare = 0;
-let selectedSeats = [];
+    <form class="form-card train-form" action="#train-results" method="get">
+        <div class="form-row">
+            <div class="field">
+                <label for="trainfrom">From Station</label>
+                <input id="trainfrom" name="trainfrom" type="text"
+                       placeholder="Starting station" required>
+            </div>
+            <div class="field">
+                <label for="trainto">To Station</label>
+                <input id="trainto" name="trainto" type="text"
+                       placeholder="Destination station" required>
+            </div>
+        </div>
 
-const today = new Date();
-const localDate = new Date(
-    today.getTime() - today.getTimezoneOffset() * 60000
-).toISOString().split("T")[0];
+        <div class="form-row">
+            <div class="field">
+                <label for="traindate">Journey Date</label>
+                <input id="traindate" name="traindate" type="date" required>
+            </div>
+            <div class="field">
+                <label for="trainclass">Travel Class</label>
+                <select id="trainclass" name="trainclass">
+                    <option>All Classes</option>
+                    <option>Sleeper</option>
+                    <option>AC 3 Tier</option>
+                    <option>AC 2 Tier</option>
+                    <option>Chair Car</option>
+                </select>
+            </div>
+        </div>
 
-document.getElementById("travelDate").min = localDate;
-document.getElementById("travelDate").value = localDate;
+        <button type="submit" class="submit-button">🔍 Search Trains</button>
+    </form>
 
-function setType(type) {
-    travelType = type;
+    <div id="train-results" class="results">
+        <h3>Available Trains — Sample Results</h3>
 
-    document.getElementById("busTab").classList.toggle(
-        "active", type === "Bus"
-    );
-    document.getElementById("trainTab").classList.toggle(
-        "active", type === "Train"
-    );
+        <div class="ticket-list">
+            <div class="ticket">
+                <h4>Intercity Express</h4>
+                <p>Departure: 8:30 AM</p>
+                <p>Arrival: 12:30 PM</p>
+                <p>Chair Car</p>
+                <div class="price">₹420</div>
+                <a href="#train-booking" class="small-btn">Book This Train</a>
+            </div>
 
-    document.getElementById("routeInfo").textContent =
-        type + " selected. Enter your route and click Search Services.";
-}
+            <div class="ticket">
+                <h4>Superfast Express</h4>
+                <p>Departure: 6:00 PM</p>
+                <p>Arrival: 10:30 PM</p>
+                <p>Sleeper</p>
+                <div class="price">₹780</div>
+                <a href="#train-booking" class="small-btn">Book This Train</a>
+            </div>
 
-document.getElementById("searchForm").addEventListener(
-    "submit", function(event) {
-        event.preventDefault();
+            <div class="ticket">
+                <h4>Night Express</h4>
+                <p>Departure: 9:00 PM</p>
+                <p>Arrival: 5:00 AM</p>
+                <p>AC 3 Tier</p>
+                <div class="price">₹1,050</div>
+                <a href="#train-booking" class="small-btn">Book This Train</a>
+            </div>
+        </div>
+    </div>
 
-        const source = document.getElementById("source").value.trim();
-        const destination =
-            document.getElementById("destination").value.trim();
+    <form id="train-booking" class="form-card booking-form"
+          action="#train-success" method="get">
+        <h3>Train Passenger Details</h3>
+        <div class="form-row">
+            <div class="field">
+                <label for="trainname">Passenger Name</label>
+                <input id="trainname" name="trainname" type="text"
+                       placeholder="Your name" required>
+            </div>
+            <div class="field">
+                <label for="trainphone">Phone Number</label>
+                <input id="trainphone" name="trainphone" type="tel"
+                       placeholder="Your phone number" required>
+            </div>
+        </div>
+        <button type="submit" class="submit-button">Submit Train Form</button>
+    </form>
 
-        if (source.toLowerCase() === destination.toLowerCase()) {
-            document.getElementById("routeInfo").textContent =
-                "Source and destination must be different.";
-            return;
-        }
+    <div id="train-success" class="success">
+        <h3>✅ Train Form Submitted Successfully!</h3>
+        <p>Thank you! Your sample train booking form has been submitted.</p>
+        <p>No actual ticket has been booked.</p>
+        <a href="#train" class="small-btn">Back to Train Search</a>
+    </div>
+</section>
 
-        document.getElementById("routeInfo").textContent =
-            travelType + " services: " + source + " to " +
-            destination + " on " +
-            document.getElementById("travelDate").value +
-            ". The services below are sample options.";
+<!-- CONTACT -->
+<section id="contact" class="page">
+    <h2>💌 Contact Us</h2>
+    <p class="subtitle">Send us your questions or feedback.</p>
 
-        selectedService = "";
-        fare = 0;
-        selectedSeats = [];
-        updateSummary();
+    <form class="form-card contact-form"
+          action="#contact-success" method="get">
+        <div class="field">
+            <label for="contactname">Your Name</label>
+            <input id="contactname" name="name" type="text"
+                   placeholder="Enter your name" required>
+        </div>
 
-        document.querySelectorAll(".seat.selected").forEach(seat => {
-            seat.classList.remove("selected");
-        });
+        <div class="field">
+            <label for="contactemail">Email Address</label>
+            <input id="contactemail" name="email" type="email"
+                   placeholder="Enter your email" required>
+        </div>
 
-        document.getElementById("message").textContent = "";
-    }
-);
+        <div class="field">
+            <label for="message">Your Message</label>
+            <textarea id="message" name="message"
+                      placeholder="Write your message..." required></textarea>
+        </div>
 
-function chooseService(name, price) {
-    if (travelType === "Bus" && !name.toLowerCase().includes("bus")) {
-        alert("Choose a bus service, or switch to Train.");
-        return;
-    }
+        <button type="submit" class="submit-button">Send Message 💌</button>
+    </form>
 
-    if (travelType === "Train" && !name.toLowerCase().includes("train")) {
-        alert("Choose a train service, or switch to Bus.");
-        return;
-    }
-
-    selectedService = name;
-    fare = price;
-    selectedSeats = [];
-
-    document.querySelectorAll(".seat.selected").forEach(seat => {
-        seat.classList.remove("selected");
-    });
-
-    updateSummary();
-
-    document.getElementById("selectedService").textContent = name;
-    document.getElementById("seats").scrollIntoView({
-        behavior: "smooth"
-    });
-}
-
-document.querySelectorAll(".seat[data-seat]").forEach(seat => {
-    seat.addEventListener("click", function() {
-        if (!selectedService) {
-            alert("Please select a bus or train service first.");
-            return;
-        }
-
-        const seatName = this.dataset.seat;
-        const index = selectedSeats.indexOf(seatName);
-        const passengerLimit = Number(
-            document.getElementById("passengers").value
-        );
-
-        if (index >= 0) {
-            selectedSeats.splice(index, 1);
-            this.classList.remove("selected");
-        } else {
-            if (selectedSeats.length >= passengerLimit) {
-                alert("You can select up to " + passengerLimit +
-                    " seat(s), based on your passenger count.");
-                return;
-            }
-
-            selectedSeats.push(seatName);
-            this.classList.add("selected");
-        }
-
-        updateSummary();
-    });
-});
-
-function updateSummary() {
-    document.getElementById("selectedService").textContent =
-        selectedService || "None";
-
-    document.getElementById("seatCount").textContent =
-        selectedSeats.length;
-
-    document.getElementById("totalFare").textContent =
-        "₹" + (fare * selectedSeats.length);
-
-    document.getElementById("seatInfo").textContent =
-        "Selected seats: " +
-        (selectedSeats.length ? selectedSeats.join(", ") : "None");
-}
-
-document.getElementById("passengerForm").addEventListener(
-    "submit", function(event) {
-        event.preventDefault();
-
-        if (!selectedService) {
-            document.getElementById("message").textContent =
-                "Please select a travel service first.";
-            return;
-        }
-
-        if (selectedSeats.length === 0) {
-            document.getElementById("message").textContent =
-                "Please select at least one seat.";
-            return;
-        }
-
-        if (selectedSeats.length !== Number(
-            document.getElementById("passengers").value
-        )) {
-            document.getElementById("message").textContent =
-                "Please select the same number of seats as passengers.";
-            return;
-        }
-
-        document.getElementById("message").textContent =
-            "Demo booking submitted for " +
-            document.getElementById("fullName").value +
-            ". Service: " + selectedService +
-            ". Seats: " + selectedSeats.join(", ") +
-            ". Total fare: ₹" + (fare * selectedSeats.length) +
-            ". No real ticket has been booked.";
-
-    }
-);
-</script>
+    <div id="contact-success" class="success">
+        <h3>✅ Form Submitted Successfully!</h3>
+        <p>Thank you for contacting Travel Buddy.</p>
+        <p>Your demo contact form has been submitted.</p>
+        <a href="#contact" class="small-btn">Back to Contact</a>
+    </div>
+</section>
 
 </body>
 </html>
