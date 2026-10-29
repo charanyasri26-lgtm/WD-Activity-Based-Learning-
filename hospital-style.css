@@ -1,0 +1,208 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4faff;
+    color: #333;
+    line-height: 1.6;
+}
+
+header {
+    background-color: #087f8c;
+    color: white;
+    text-align: center;
+    padding: 20px;
+}
+
+nav {
+    background-color: #05636e;
+    padding: 12px;
+    text-align: center;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    display: inline-block;
+    margin: 5px 8px;
+    font-weight: bold;
+}
+
+nav a:hover {
+    color: #ffe082;
+}
+
+/* Hide all sections by default */
+.page {
+    display: none;
+}
+
+/* Show the selected section */
+.page:target {
+    display: block;
+}
+
+/* Show Home when no section is selected */
+body:not(:has(.page:target)) #home {
+    display: block;
+}
+
+section {
+    padding: 40px 20px;
+    text-align: center;
+    min-height: 300px;
+}
+
+section h2 {
+    color: #087f8c;
+    margin-bottom: 20px;
+}
+
+#home {
+    background: linear-gradient(120deg, #d8f5f5, #e5f0ff);
+    padding: 70px 20px;
+}
+
+#home h2 {
+    font-size: 32px;
+}
+
+#home p {
+    margin: 12px;
+}
+
+.btn {
+    display: inline-block;
+    background-color: #087f8c;
+    color: white;
+    padding: 12px 22px;
+    text-decoration: none;
+    border-radius: 6px;
+    margin-top: 12px;
+}
+
+.container {
+    max-width: 1100px;
+    margin: auto;
+}
+
+.cards {
+    max-width: 1100px;
+    margin: auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+}
+
+.card {
+    background-color: white;
+    padding: 22px;
+    border-radius: 10px;
+    box-shadow: 0 3px 10px #00000015;
+}
+
+.card h3 {
+    color: #05636e;
+    margin-bottom: 10px;
+}
+
+.note {
+    margin-top: 15px;
+    color: #555;
+    font-size: 14px;
+}
+
+#hours .card {
+    max-width: 600px;
+    margin: auto;
+}
+
+#emergency {
+    background-color: #fff0f0;
+}
+
+#emergency h2 {
+    color: #c62828;
+}
+
+#emergency p {
+    margin: 12px;
+}
+
+#appointment {
+    background-color: #e9f7f7;
+}
+
+form {
+    max-width: 600px;
+    margin: auto;
+    background: white;
+    padding: 25px;
+    border-radius: 10px;
+    text-align: left;
+}
+
+label {
+    display: block;
+    margin-top: 12px;
+    font-weight: bold;
+}
+
+input, select, textarea {
+    width: 100%;
+    padding: 11px;
+    margin-top: 5px;
+    border: 1px solid #aaa;
+    border-radius: 5px;
+    font: inherit;
+}
+
+input:focus, select:focus, textarea:focus {
+    outline: 2px solid #087f8c;
+}
+
+button {
+    width: 100%;
+    padding: 12px;
+    margin-top: 18px;
+    background-color: #087f8c;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+button:hover, .btn:hover {
+    background-color: #05636e;
+}
+
+footer {
+    background-color: #064b54;
+    color: white;
+    text-align: center;
+    padding: 20px;
+}
+
+@media (max-width: 600px) {
+    nav a {
+        margin: 5px;
+        font-size: 13px;
+    }
+
+    #home h2 {
+        font-size: 25px;
+    }
+
+    section {
+        padding: 25px 12px;
+    }
+}
