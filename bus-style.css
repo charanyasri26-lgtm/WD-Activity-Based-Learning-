@@ -1,0 +1,383 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #f5f3ff;
+    color: #292544;
+    height: 100vh;
+    overflow: hidden;
+}
+
+header {
+    height: 75px;
+    background: white;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 6%;
+    box-shadow: 0 3px 12px #dcd7f0;
+    position: relative;
+    z-index: 10;
+}
+
+.logo {
+    color: #7256d8;
+    font-size: 25px;
+    font-weight: bold;
+}
+
+nav {
+    display: flex;
+    gap: 12px;
+}
+
+nav a {
+    text-decoration: none;
+    color: #453c68;
+    font-weight: bold;
+    padding: 12px 16px;
+    border-radius: 20px;
+}
+
+nav a:hover {
+    background: #7256d8;
+    color: white;
+}
+
+.page {
+    display: none;
+    height: calc(100vh - 75px);
+    padding: 25px 6%;
+    overflow: auto;
+}
+
+#home {
+    display: block;
+}
+
+body:has(.page:target) #home {
+    display: none;
+}
+
+body:has(#home:target) #home,
+body:has(#bus:target) #bus,
+body:has(#train:target) #train,
+body:has(#contact:target) #contact,
+body:has(#bus-results:target) #bus,
+body:has(#bus-booking:target) #bus,
+body:has(#bus-success:target) #bus,
+body:has(#train-results:target) #train,
+body:has(#train-booking:target) #train,
+body:has(#train-success:target) #train,
+body:has(#contact-success:target) #contact {
+    display: block;
+}
+
+.hero {
+    text-align: center;
+    padding-top: 35px;
+}
+
+.hero h1 {
+    font-size: 42px;
+    color: #6246c8;
+    margin-bottom: 12px;
+}
+
+.hero p {
+    color: #6b6682;
+    font-size: 17px;
+    margin-bottom: 20px;
+}
+
+.travel-image {
+    font-size: 85px;
+    margin: 15px 0;
+}
+
+.buttons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin: 20px 0;
+}
+
+.btn {
+    display: inline-block;
+    border-radius: 12px;
+    background: #7256d8;
+    color: white;
+    padding: 13px 24px;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.btn:hover {
+    background: #5035b3;
+}
+
+.btn.pink {
+    background: #ff9fba;
+    color: #48263b;
+}
+
+.features {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 30px;
+}
+
+.feature {
+    background: white;
+    padding: 20px;
+    width: 190px;
+    border-radius: 15px;
+    box-shadow: 0 3px 12px #e1dcf2;
+    text-align: center;
+}
+
+.feature h3 {
+    color: #7256d8;
+    margin-bottom: 10px;
+}
+
+h2 {
+    color: #6246c8;
+    text-align: center;
+    margin: 8px 0 15px;
+}
+
+.subtitle {
+    text-align: center;
+    color: #6b6682;
+    margin-bottom: 18px;
+}
+
+.form-card {
+    background: white;
+    max-width: 650px;
+    margin: 0 auto;
+    padding: 22px;
+    border-radius: 18px;
+    box-shadow: 0 4px 18px #ded8f1;
+}
+
+.form-row {
+    display: flex;
+    gap: 15px;
+}
+
+.field {
+    flex: 1;
+    margin-bottom: 14px;
+}
+
+label {
+    display: block;
+    margin-bottom: 7px;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+input, select, textarea {
+    width: 100%;
+    padding: 11px;
+    border: 1px solid #d9d1f0;
+    border-radius: 9px;
+    font-size: 14px;
+    background: #fcfbff;
+    outline-color: #7256d8;
+}
+
+textarea {
+    resize: none;
+    height: 65px;
+}
+
+.submit-button {
+    width: 100%;
+    border: none;
+    padding: 13px;
+    border-radius: 10px;
+    background: #7256d8;
+    color: white;
+    font-weight: bold;
+    font-size: 15px;
+    cursor: pointer;
+}
+
+.submit-button:hover {
+    background: #5035b3;
+}
+
+.results {
+    display: none;
+    margin: 20px auto;
+    max-width: 900px;
+}
+
+body:has(#bus-results:target) #bus-results,
+body:has(#train-results:target) #train-results {
+    display: block;
+}
+
+.results h3 {
+    text-align: center;
+    color: #6246c8;
+    margin-bottom: 12px;
+}
+
+.ticket-list {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+.ticket {
+    flex: 1;
+    background: white;
+    padding: 15px;
+    border: 1px solid #e4ddfa;
+    border-radius: 14px;
+    text-align: center;
+    box-shadow: 0 3px 10px #e7e1f5;
+}
+
+.ticket h4 {
+    color: #6246c8;
+    margin-bottom: 8px;
+}
+
+.ticket p {
+    margin: 6px 0;
+    font-size: 14px;
+}
+
+.price {
+    font-weight: bold;
+    color: #15966a;
+    font-size: 19px;
+    margin: 10px 0;
+}
+
+.small-btn {
+    display: inline-block;
+    margin-top: 5px;
+    padding: 9px 15px;
+    border-radius: 9px;
+    background: #ff9fba;
+    color: #48263b;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 13px;
+}
+
+.booking-form,
+.success {
+    display: none;
+    margin: 20px auto;
+}
+
+body:has(#bus-booking:target) #bus-booking,
+body:has(#train-booking:target) #train-booking {
+    display: block;
+}
+
+body:has(#bus-success:target) #bus-success,
+body:has(#train-success:target) #train-success,
+body:has(#contact-success:target) #contact-success {
+    display: block;
+}
+
+body:has(#bus-success:target) .bus-form,
+body:has(#bus-success:target) #bus-results,
+body:has(#train-success:target) .train-form,
+body:has(#train-success:target) #train-results,
+body:has(#contact-success:target) .contact-form {
+    display: none;
+}
+
+.booking-form h3 {
+    color: #6246c8;
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+.success {
+    background: #e2f9ed;
+    color: #176b47;
+    border: 1px solid #9bdcba;
+    padding: 20px;
+    border-radius: 13px;
+    max-width: 650px;
+    text-align: center;
+}
+
+.success h3 {
+    margin-bottom: 10px;
+}
+
+.success p {
+    margin: 7px 0;
+}
+
+@media (max-width: 700px) {
+    body {
+        overflow: auto;
+        height: auto;
+    }
+
+    header {
+        height: auto;
+        min-height: 75px;
+        flex-direction: column;
+        gap: 12px;
+        padding: 15px;
+    }
+
+    nav {
+        gap: 2px;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    nav a {
+        padding: 9px;
+        font-size: 13px;
+    }
+
+    .page {
+        height: auto;
+        min-height: calc(100vh - 100px);
+        overflow: visible;
+        padding: 22px 5%;
+    }
+
+    .hero h1 {
+        font-size: 30px;
+    }
+
+    .features,
+    .ticket-list,
+    .form-row {
+        flex-direction: column;
+    }
+
+    .feature {
+        width: 100%;
+    }
+
+    .results {
+        padding-bottom: 20px;
+    }
+}
