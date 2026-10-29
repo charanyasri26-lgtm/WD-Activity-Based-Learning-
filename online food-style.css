@@ -1,0 +1,410 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #fff8f0;
+    color: #333;
+    line-height: 1.5;
+}
+
+.hidden {
+    display: none !important;
+}
+
+/* Header */
+header {
+    background: #ff5722;
+    color: white;
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+header h1 {
+    font-size: 26px;
+}
+
+/* Navigation */
+nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 7px;
+}
+
+nav button {
+    border: none;
+    background: transparent;
+    color: white;
+    padding: 9px 11px;
+    cursor: pointer;
+    font-size: 15px;
+    font-weight: bold;
+    border-radius: 6px;
+}
+
+nav button:hover {
+    background: #e64a19;
+}
+
+/* Page layout */
+.page {
+    min-height: 65vh;
+    padding: 30px 20px;
+}
+
+h2 {
+    color: #e64a19;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.subtitle {
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+/* Home */
+.hero {
+    text-align: center;
+    padding: 20px 10px;
+}
+
+.hero h2 {
+    font-size: 30px;
+}
+
+.hero p {
+    margin-bottom: 18px;
+}
+
+.home-image {
+    text-align: center;
+}
+
+.home-image img {
+    width: 100%;
+    max-width: 420px;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 12px;
+}
+
+/* Buttons */
+.primary-btn,
+.buy-btn,
+.secondary-btn {
+    border: none;
+    border-radius: 6px;
+    padding: 10px 13px;
+    margin: 5px 2px;
+    color: white;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.primary-btn {
+    background: #ff5722;
+}
+
+.primary-btn:hover {
+    background: #d84315;
+}
+
+.buy-btn {
+    background: #2e7d32;
+}
+
+.buy-btn:hover {
+    background: #1b5e20;
+}
+
+.secondary-btn {
+    background: #666;
+}
+
+.secondary-btn:hover {
+    background: #444;
+}
+
+/* Food menu */
+.food-container {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 18px;
+    max-width: 1100px;
+    margin: auto;
+}
+
+.food-card {
+    background: white;
+    padding: 12px;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 3px 10px #00000018;
+}
+
+.food-card img {
+    width: 100%;
+    height: 130px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.food-card h3 {
+    margin: 10px 0;
+}
+
+.food-card p {
+    font-size: 14px;
+}
+
+.food-card h4 {
+    color: #e64a19;
+    font-size: 18px;
+    margin: 10px 0;
+}
+
+/* Offers and reviews */
+.info-card {
+    background: white;
+    max-width: 550px;
+    padding: 22px;
+    margin: 18px auto;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 3px 10px #00000018;
+}
+
+.info-card h3 {
+    color: #e64a19;
+    margin-bottom: 10px;
+}
+
+/* Cart */
+.cart-summary {
+    max-width: 800px;
+    margin: 20px auto;
+    background: white;
+    padding: 20px;
+    text-align: right;
+    border-radius: 10px;
+    box-shadow: 0 3px 10px #00000018;
+}
+
+.cart-summary h3 {
+    color: #e64a19;
+    margin-bottom: 10px;
+}
+
+.cart-item {
+    max-width: 800px;
+    margin: 15px auto;
+    padding: 15px;
+    background: white;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    box-shadow: 0 3px 10px #00000018;
+}
+
+.cart-item img {
+    width: 115px;
+    height: 105px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.cart-details {
+    flex: 1;
+}
+
+.cart-details h3 {
+    margin-bottom: 5px;
+}
+
+.item-subtotal {
+    color: #e64a19;
+    font-weight: bold;
+}
+
+.quantity-controls {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-top: 8px;
+}
+
+.quantity-controls button {
+    border: none;
+    background: #ff5722;
+    color: white;
+    border-radius: 5px;
+    min-width: 30px;
+    padding: 6px 9px;
+    cursor: pointer;
+}
+
+.quantity-controls .remove-btn {
+    background: #b71c1c;
+}
+
+/* Checkout address form */
+.checkout-box {
+    background: white;
+    max-width: 550px;
+    margin: auto;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 3px 12px #00000018;
+}
+
+.checkout-box h3 {
+    margin-bottom: 12px;
+}
+
+.checkout-box label {
+    display: block;
+    margin-top: 14px;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.checkout-box input,
+.checkout-box textarea,
+.checkout-box select {
+    width: 100%;
+    padding: 11px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 15px;
+    font-family: Arial, sans-serif;
+}
+
+.checkout-box textarea {
+    min-height: 85px;
+    resize: vertical;
+}
+
+.checkout-total {
+    color: #e64a19;
+    margin: 15px 0;
+}
+
+.full-btn {
+    display: block;
+    width: 100%;
+    margin: 12px 0 0;
+    padding: 12px;
+}
+
+/* Order confirmation */
+.confirmation-box {
+    background: white;
+    max-width: 650px;
+    margin: 20px auto;
+    padding: 25px;
+    border-radius: 12px;
+    text-align: center;
+    box-shadow: 0 3px 12px #00000018;
+}
+
+.confirmation-box p {
+    margin: 12px 0;
+    overflow-wrap: anywhere;
+}
+
+.confirmation-box h3 {
+    color: #e64a19;
+    margin-top: 15px;
+}
+
+/* Footer */
+footer {
+    background: #333;
+    color: white;
+    text-align: center;
+    padding: 18px 10px;
+    margin-top: 20px;
+}
+
+/* Tablet */
+@media (max-width: 850px) {
+    .food-container {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    header {
+        flex-direction: column;
+    }
+
+    nav {
+        justify-content: center;
+    }
+}
+
+/* Mobile */
+@media (max-width: 480px) {
+    header h1 {
+        font-size: 22px;
+    }
+
+    nav {
+        justify-content: center;
+        gap: 3px;
+    }
+
+    nav button {
+        font-size: 12px;
+        padding: 8px;
+    }
+
+    .page {
+        padding: 22px 12px;
+    }
+
+    .food-container {
+        grid-template-columns: 1fr;
+    }
+
+    .food-card img {
+        height: 150px;
+    }
+
+    .home-image img {
+        height: 150px;
+    }
+
+    .hero h2 {
+        font-size: 24px;
+    }
+
+    .cart-item {
+        align-items: flex-start;
+        gap: 10px;
+        padding: 10px;
+    }
+
+    .cart-item img {
+        width: 85px;
+        height: 85px;
+    }
+
+    .cart-details h3 {
+        font-size: 16px;
+    }
+
+    .checkout-box {
+        padding: 18px;
+    }
+}
